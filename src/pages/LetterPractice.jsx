@@ -2,24 +2,34 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/Button';
-import LetterGenerator from '../containers/LetterGenerator';
+import LetterDisplay from '../components/LetterDisplay';
 import { FaArrowCircleRight } from 'react-icons/fa';
-import { LetterScoreContext, LetterScoreDispatchContext } from '../containers/LetterScoreProvider';
+import { LetterPracticeContext, LetterPracticeDispatchContext } from '../containers/LetterPracticeProvider';
 
 const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 7em 5em;
   display: grid;
-  grid-template-rows: 3em auto 3em;
+  grid-template-rows: 3em 3em auto 3em;
 
   .page-title {
     text-align: left;
-    color: #1d8dd8;
+    color: #111;
   }
 
   .quit-practice-btn {
 
+  }
+
+  .mode-switch {
+    outline: none;
+    height: 2em;
+    width: 10em;
+    border: 1px solid #1d8dd8;
+    border-radius: 5px;
+    color: #1d8dd8;
+    cursor: pointer;
   }
 `;
 
@@ -75,19 +85,36 @@ const LetterPractice = () => {
     navigate('/');
   }
 
-  const {correct, incorrect} = useContext(LetterScoreContext);
-  const setLetterScore = useContext(LetterScoreDispatchContext);
+  const {letters, correct, incorrect, mode} = useContext(LetterPracticeContext);
+  const setLetterPracticeState = useContext(LetterPracticeDispatchContext);
 
   const incrementCorrectAmt = () => {
-    setLetterScore({incorrect, correct: correct + 1});
+    setLetterPracticeState({incorrect, correct: correct + 1});
+  };
+
+  const setMode = (e) => {
+    const value = e.target.value;
+    if (value) {
+      setLetterPracticeState(prev => {
+        const updated = {...prev};
+        updated.mode = value;
+        return updated;
+      });
+    }
   };
 
 
   return (
     <Container>
       <h1 className='page-title' onClick={incrementCorrectAmt}>Letter Practice</h1>
+      <select name="mode-switch" id="mode-switch" className="mode-switch" onChange={setMode}>
+        <option value='all' disabled>Choose a mode:</option>
+        <option value='left-hand'>Left hand</option>
+        <option value='right-hand'>Right hand</option>
+        <option value='all'>Both hands</option>
+      </select>
       <Wrapper>
-        <LetterGenerator />
+        <LetterDisplay mode={mode} />
         <LetterInput 
           type='text'
         />

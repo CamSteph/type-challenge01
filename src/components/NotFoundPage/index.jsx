@@ -32,7 +32,6 @@ const NotFoundImg = styled.img`
 const NotFoundMsg = styled.span`
   font-size: 20px;
   text-align: center;
-  /* transform: translateY(-550%); */
   font-weight: 900;
 `;
 
@@ -51,7 +50,7 @@ const NotFoundPage = () => {
         <NotFoundMsg>Uh-oh! You seem to be lost.</NotFoundMsg>
         <Button
           btnOnClick={goBackHome}
-          btnText='Go back Home'
+          btnText='Go back'
           btnAction='primary'
           btnSize='md'
           btnInverted={true}
