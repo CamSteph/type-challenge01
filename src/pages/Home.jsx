@@ -59,7 +59,7 @@ const Home = () => {
           btnOnClick={goToPracticeOptions}
           btnText='Practice'
           btnAction='primary'
-          btnSize='lg'
+          btnSize='md'
           btnInverted={false}
           btnIcon={<FaArrowRight />}
         />

@@ -7,38 +7,44 @@ const Container = styled.div`
   min-height: 6em;
   max-height: 12em;
   padding: 20px;
-  border: 1px solid #1d8dd8;
+  border: 1px solid #999;
   border-radius: 10px;
   margin: auto;
   display: grid;
   place-items: center;
-`;
+  line-height: 150%;
+  `;
 
 const Letter = styled.p`
+line-height: 120%;
   font-size: 40px;
   display: inline-block;
   letter-spacing: 2px;
-  color: #777;
-  text-transform: capitalize;
+  color: #888;
+  /* text-transform: capitalize; */
+  user-select: none;
 `;
 
-const LetterDisplay = ({mode}) => {
-
-  const [letters, setLetters] = useState([]);
-  // const remove = Math.floor(Math.random() * letter);
-
-  // console.log(stringLength);
+const LetterDisplay = ({
+  mode,
+  setLetterPracticeState,
+  letters,
+}) => {
 
   useEffect(() => {
 
-    setLetters(generateLetters(mode));
+    setLetterPracticeState(prev => {
+      const updated = {...prev};
+      updated.letters = generateLetters(mode);
+      return updated;
+    });
 
   }, [mode]);
 
   return (
     <Container>
       <div>
-        {letters.map(letter => <Letter key={letter}>{letter}</Letter>)}
+        {letters && letters.map(letter => <Letter key={letter}>{letter}</Letter>)}
       </div>
     </Container>
   );

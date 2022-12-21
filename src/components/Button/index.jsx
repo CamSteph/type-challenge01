@@ -44,7 +44,7 @@ const BtnContainer = styled.button`
       case 'primary':
         return '#1d8dd8';
       case 'success':
-        return '#1dd83c';
+        return '#3bb14e';
       case 'warning':
         return '#d8b61d';
       case 'danger':
@@ -62,7 +62,7 @@ const BtnContainer = styled.button`
           case 'primary':
             return 'color: #1d8dd8';
           case 'success':
-            return 'color: #1dd83c';
+            return 'color: #3bb14e';
           case 'warning':
             return 'color: #d8b61d';
           case 'danger':
@@ -80,7 +80,7 @@ const BtnContainer = styled.button`
         case 'primary':
           return 'border: 1px solid #1d8dd8';
         case 'success':
-          return 'border: 1px solid #1dd83c';
+          return 'border: 1px solid #3bb14e';
         case 'warning':
           return 'border: 1px solid #d8b61d';
         case 'danger':
@@ -99,7 +99,7 @@ const BtnContainer = styled.button`
         case 'primary':
           return '#1674b3';
         case 'success':
-          return '#17ac2f';
+          return '#288337';
         case 'warning':
           return '#ac9015';
         case 'danger':
@@ -120,6 +120,12 @@ const BtnContainer = styled.button`
 
   .btn-text {
     margin-right: .25em;
+    display: flex;
+    align-items: center;
+
+    .btn-icon {
+      margin-left: .25em;
+    }
   }
 `;
 
@@ -138,7 +144,7 @@ const Button = ({
       btnInverted={btnInverted}
       onClick={btnOnClick}
     >
-      <span className='btn-text'>{btnText}</span>{btnIcon}
+      <span className='btn-text'>{btnText}<span className='btn-icon'>{btnIcon}</span></span>
     </BtnContainer>
   );
 };

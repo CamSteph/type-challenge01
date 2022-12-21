@@ -44,7 +44,7 @@ const Option = ({
           btnText={btnText}
           btnInverted={false}
           btnAction={btnAction}
-          btnSize='lg'
+          btnSize='md'
           btnOnClick={goToDestination}
           btnIcon={<FaCheck />}
         />

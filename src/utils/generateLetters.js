@@ -1,4 +1,23 @@
 /**
+ * Accepts an array of random letters and 
+ * randomly captializes up to half of the letters
+ * @param {array} shuffledLetters
+ * @returns Randomly capitalized array of letters
+ */
+export const capitalizeArrayOfLetters = (shuffledLetters) => {
+  // can only capitalize, at most, half of the letters
+  let currentIndex = Math.floor(Math.random() * (Math.floor(shuffledLetters.length / 2))), randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * (shuffledLetters.length - 1));
+    shuffledLetters[randomIndex] = shuffledLetters[randomIndex].toUpperCase();
+    currentIndex--;
+  }
+
+  return shuffledLetters;
+}
+
+/**
  * Accepts an array of letters and shuffles them
  * @param {array} arrayOfLetters 
  * @returns Shuffled array of letters
@@ -19,7 +38,7 @@ export const shuffleArrayOfLetters = (arrayOfLetters) => {
       arrayOfLetters[currentIndex],
     ]
   }
-  return arrayOfLetters;
+  return capitalizeArrayOfLetters(arrayOfLetters);
 }
 
 

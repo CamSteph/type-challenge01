@@ -7,9 +7,11 @@ const LetterPracticeProvider = ({children}) => {
 
   const [letterPracticeState, setLetterPracticeState] = useState({
     letters: [], 
+    letterEntries: [],
     correct: 0, 
     incorrect: 0,
-    mode: 'left-hand'
+    mode: 'all',
+    continueTyping: true,
   });
 
   return (

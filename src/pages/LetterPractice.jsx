@@ -5,6 +5,7 @@ import Button from '../components/Button';
 import LetterDisplay from '../components/LetterDisplay';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import { LetterPracticeContext, LetterPracticeDispatchContext } from '../containers/LetterPracticeProvider';
+import LetterInput from '../containers/LetterInput';
 
 const Container = styled.div`
   width: 100%;
@@ -12,6 +13,7 @@ const Container = styled.div`
   padding: 7em 5em;
   display: grid;
   grid-template-rows: 3em 3em auto 3em;
+  background:  #ffffff;
 
   .page-title {
     text-align: left;
@@ -36,7 +38,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   min-height: 70vh;
-  background: rgba(225, 225, 225, .75);
+  background: rgba(225, 225, 225, .55);
   border-radius: 10px;
   padding: 40px;
   grid-column: 1 / -1;
@@ -65,17 +67,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const LetterInput = styled.input`
-  border: none;
-  outline: none;
-  width: 100%;
-  display: block;
-  margin: auto;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 28px;
-  font-weight: 500;
-`;
+// const LetterInput = styled.input`
+//   border: none;
+//   outline: none;
+//   width: 100%;
+//   display: block;
+//   margin: auto;
+//   padding: 10px;
+//   border-radius: 10px;
+//   font-size: 28px;
+//   font-weight: 500;
+// `;
 
 const LetterPractice = () => {
 
@@ -85,7 +87,7 @@ const LetterPractice = () => {
     navigate('/');
   }
 
-  const {letters, correct, incorrect, mode} = useContext(LetterPracticeContext);
+  const {letters, letterEntries, correct, incorrect, mode, continueTyping} = useContext(LetterPracticeContext);
   const setLetterPracticeState = useContext(LetterPracticeDispatchContext);
 
   const incrementCorrectAmt = () => {
@@ -107,16 +109,29 @@ const LetterPractice = () => {
   return (
     <Container>
       <h1 className='page-title' onClick={incrementCorrectAmt}>Letter Practice</h1>
-      <select name="mode-switch" id="mode-switch" className="mode-switch" onChange={setMode}>
-        <option value='all' disabled>Choose a mode:</option>
+      <select 
+        name="mode-switch" 
+        id="mode-switch" 
+        className="mode-switch" 
+        onChange={setMode} 
+        defaultValue='all'
+      >
+        <option value='all'>Both hands</option>
         <option value='left-hand'>Left hand</option>
         <option value='right-hand'>Right hand</option>
-        <option value='all'>Both hands</option>
       </select>
       <Wrapper>
-        <LetterDisplay mode={mode} />
+        <LetterDisplay 
+          mode={mode} 
+          setLetterPracticeState={setLetterPracticeState} 
+          letters={letters}
+        />
         <LetterInput 
           type='text'
+          letterEntries={letterEntries}
+          letters={letters}
+          setLetterPracticeState={setLetterPracticeState}
+          continueTyping={continueTyping}
         />
       <div className='bottom-row'>
         <div className='score-tracker'>
