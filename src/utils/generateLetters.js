@@ -1,5 +1,23 @@
 /**
  * Accepts an array of random letters and 
+ * randomly adds spaces
+ * @param {array} letters
+ * @returns New array with spaces
+ */
+export const addSpacesToLetters = (letters) => {
+  // can only capitalize, at most, half of the letters
+  // let currentIndex = Math.floor(Math.random() * (Math.floor(letters.length / 2) / 2)), randomIndex;
+
+  // while (currentIndex !== 0) {
+  //   randomIndex = Math.floor(Math.random() * (letters.length - 1));
+  //   letters[randomIndex] = letters[randomIndex].toUpperCase() + '__';
+  //   currentIndex--;
+  // }
+
+  return letters;
+};
+/**
+ * Accepts an array of random letters and 
  * randomly captializes up to half of the letters
  * @param {array} shuffledLetters
  * @returns Randomly capitalized array of letters
@@ -14,8 +32,8 @@ export const capitalizeArrayOfLetters = (shuffledLetters) => {
     currentIndex--;
   }
 
-  return shuffledLetters;
-}
+  return addSpacesToLetters(shuffledLetters);
+};
 
 /**
  * Accepts an array of letters and shuffles them

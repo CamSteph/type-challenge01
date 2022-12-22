@@ -91,16 +91,21 @@ const LetterPractice = () => {
   const setLetterPracticeState = useContext(LetterPracticeDispatchContext);
 
   const incrementCorrectAmt = () => {
-    setLetterPracticeState({incorrect, correct: correct + 1});
+    setLetterPracticeState(prev => {
+      return {...prev, incorrect, correct: correct + 1}
+   });
   };
 
   const setMode = (e) => {
     const value = e.target.value;
     if (value) {
       setLetterPracticeState(prev => {
-        const updated = {...prev};
-        updated.mode = value;
-        return updated;
+        return {
+          ...prev,
+          letterEntries: [],
+          mode: value,
+          continueTyping: true,
+        };
       });
     }
   };
@@ -114,7 +119,7 @@ const LetterPractice = () => {
         id="mode-switch" 
         className="mode-switch" 
         onChange={setMode} 
-        defaultValue='all'
+        defaultValue={mode}
       >
         <option value='all'>Both hands</option>
         <option value='left-hand'>Left hand</option>
@@ -125,6 +130,8 @@ const LetterPractice = () => {
           mode={mode} 
           setLetterPracticeState={setLetterPracticeState} 
           letters={letters}
+          continueTyping={continueTyping}
+          letterEntries={letterEntries}
         />
         <LetterInput 
           type='text'
@@ -132,6 +139,7 @@ const LetterPractice = () => {
           letters={letters}
           setLetterPracticeState={setLetterPracticeState}
           continueTyping={continueTyping}
+          mode={mode}
         />
       <div className='bottom-row'>
         <div className='score-tracker'>

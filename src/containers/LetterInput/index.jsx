@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const Input = styled.input`
@@ -18,40 +18,50 @@ const LetterInput = ({
   letters,
   setLetterPracticeState,
   continueTyping,
+  mode,
 }) => {
+
+  const letterInputRef = useRef();
+
+  useEffect(() => {
+    letterInputRef.current.value = '';
+  }, [mode]);
 
   const enterLetter = (e) => {
     const currentLetter = e.target.value;
+    console.log(currentLetter)
     let keyCode = (window.event) ? e.keyCode : e.which;
-    console.log(keyCode);
-    setLetterPracticeState(prev => {
-      const updated = {...prev};
-      
-      let generatedLetters = letters;
-      let currentLetters = updated.letterEntries;
-      if (!generatedLetters.join('').startsWith(currentLetters.join(''))) {
-        updated.continueTyping = false;
-      }
-      else {
-        updated.continueTyping = true;
-        // updated.letterEntries = [currentLetter.split(',')];
-      }
-      if(!updated.continueTyping && e.keyCode !== 8) {
-        e.target.value = updated.letterEntries.join('');
+    if(currentLetter.trim()) {
+      setLetterPracticeState(prev => {
+        const updated = {...prev};
+        
+        let generatedLetters = letters;
+        let currentLetters = updated.letterEntries;
+  
+        if (!generatedLetters.join('').startsWith(currentLetters.join(''))) {
+          updated.continueTyping = currentLetters.join('').length - 1;
+        }
+        else {
+          updated.continueTyping = true;
+        }
+  
+        if(updated.continueTyping !== true && keyCode !== 8) {
+          e.target.value = updated.letterEntries.join('');
+          return updated;
+        }
+        console.log('currentLettr is: ', currentLetter)
+        updated.letterEntries = currentLetter.split(',');
+  
         return updated;
-      };
-      updated.letterEntries = [currentLetter.split(',')];
-
-      return updated;
-    })
+      });
+    }
   };
 
   return (
     <Input
       type='text'
-      // onChange={enterLetter}
       onKeyUp={enterLetter}
-      maxLength={letterEntries.length + 3}
+      ref={letterInputRef}
     />
   );
 };
