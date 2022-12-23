@@ -7,10 +7,12 @@ const Input = styled.input`
   width: 100%;
   display: block;
   margin: auto;
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
+  color: #222;
   font-size: 28px;
   font-weight: 500;
+  font-family: 'PT Mono', 'Chivo Mono', monospace;
 `;
 
 const LetterInput = ({
@@ -25,31 +27,34 @@ const LetterInput = ({
 
   useEffect(() => {
     letterInputRef.current.value = '';
-  }, [mode]);
+  }, [mode, letters]);
 
   const enterLetter = (e) => {
     const currentLetter = e.target.value;
-    console.log(currentLetter)
     let keyCode = (window.event) ? e.keyCode : e.which;
-    if(currentLetter.trim()) {
+
+    if(currentLetter.trim() || keyCode === 8) {
       setLetterPracticeState(prev => {
         const updated = {...prev};
         
         let generatedLetters = letters;
         let currentLetters = updated.letterEntries;
   
-        if (!generatedLetters.join('').startsWith(currentLetters.join(''))) {
-          updated.continueTyping = currentLetters.join('').length - 1;
+        if (!generatedLetters.join('').startsWith(currentLetter)) {
+          updated.continueTyping = currentLetter.length - 1;
+          updated.incorrect = Number(updated.incorrect) ? Number(updated.incorrect) + 1 : 0;
+          if(keyCode !== 8) {
+            e.target.value = currentLetters.join('');
+            return updated;
+          }
         }
         else {
           updated.continueTyping = true;
-        }
-  
-        if(updated.continueTyping !== true && keyCode !== 8) {
-          e.target.value = updated.letterEntries.join('');
+          updated.correct = Number(updated.correct) ? Number(updated.correct) + 1 : 0;
+          updated.letterEntries = currentLetter.split(',');
           return updated;
         }
-        console.log('currentLettr is: ', currentLetter)
+
         updated.letterEntries = currentLetter.split(',');
   
         return updated;
@@ -62,6 +67,7 @@ const LetterInput = ({
       type='text'
       onKeyUp={enterLetter}
       ref={letterInputRef}
+      spellCheck={false}
     />
   );
 };

@@ -7,31 +7,31 @@ const Container = styled.div`
   min-height: 6em;
   max-height: 15em;
   padding: 20px;
-  border: 1px solid #999;
+  /* border: 1px solid #999; */
   border-radius: 10px;
   margin: auto;
   display: grid;
-  /* grid-gap: 45px; */
   place-items: center;
   line-height: 150%;
   `;
 
 const Letter = styled.p`
-line-height: 140%;
+  line-height: 140%;
   font-size: 40px;
+  font-family: 'PT Mono', 'Chivo Mono', monospace;
+  font-weight: 900;
   display: inline-block;
   letter-spacing: 2px;
-  /* color: #888; */
-  /* color: #5d9e5d; */
   user-select: none;
   margin-bottom: 3px;
   span {
     background: #ced2d4;
     padding: 5px;
-    border-radius: 5px;
-    margin-right: .35em;
     display: grid;
     place-items: center;
+    &:last-child {
+      /* border-radius: 5px; */
+    }
   }
 `;
 

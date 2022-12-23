@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import NotFoundImage from '../../assets/404.jpg';
+import NotFoundImage from '../../assets/404-min.jpg';
 import Button from '../Button';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';

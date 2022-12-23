@@ -67,27 +67,23 @@ const Wrapper = styled.div`
   }
 `;
 
-// const LetterInput = styled.input`
-//   border: none;
-//   outline: none;
-//   width: 100%;
-//   display: block;
-//   margin: auto;
-//   padding: 10px;
-//   border-radius: 10px;
-//   font-size: 28px;
-//   font-weight: 500;
-// `;
-
 const LetterPractice = () => {
 
   const navigate = useNavigate();
 
   const quitPractice = () => {
-    navigate('/');
+    navigate(-1);
   }
 
-  const {letters, letterEntries, correct, incorrect, mode, continueTyping} = useContext(LetterPracticeContext);
+  const {
+    letters, 
+    letterEntries, 
+    correct, 
+    incorrect, 
+    mode, 
+    continueTyping
+  } = useContext(LetterPracticeContext);
+  
   const setLetterPracticeState = useContext(LetterPracticeDispatchContext);
 
   const incrementCorrectAmt = () => {
