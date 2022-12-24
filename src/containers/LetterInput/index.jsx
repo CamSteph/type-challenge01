@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { generateLetters } from '../../utils/generateLetters';
 
 const Input = styled.input`
   border: none;
@@ -42,10 +43,21 @@ const LetterInput = ({
         
         let generatedLetters = letters;
 
-        if(generatedLetters.join('') === currentLetter) return window.location.reload();
+        // if(generatedLetters.join('') === currentLetter) return window.location.reload();
+        if(generatedLetters.join('') === currentLetter) {
+          return {
+            ...prev,
+            letters: generateLetters(prev.mode), 
+            letterEntries: [],
+            correct: 0, 
+            incorrect: 0,
+            continueTyping: true,
+            practiceStarted: false,
+          }
+        }
 
-  
         if (!generatedLetters.join('').startsWith(currentLetter)) {
+          // if(!continueTyping) return updated;
           updated.continueTyping = currentLetter.length - 1;
           if(keyCode !== 8) {
             updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
@@ -75,12 +87,13 @@ const LetterInput = ({
       placeholder={
         (!practiceStarted || letterEntries.length < 1) 
         ? 
-          'Type the characters that are present.' 
+          'Type the characters that are present' 
         : 
           ''
       }
       autoFocus={true}
-      maxLength={continueTyping === true ? 50 : continueTyping + 1}
+      maxLength={continueTyping === true ? (letterEntries[0] ? letterEntries[0].length + 1 : 1) : continueTyping + 1}
+      // maxLength={continueTyping === true ? letters.length: continueTyping + 1}
     />
   );
 };

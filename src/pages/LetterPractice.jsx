@@ -6,6 +6,7 @@ import LetterDisplay from '../components/LetterDisplay';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import { LetterPracticeContext, LetterPracticeDispatchContext } from '../containers/LetterPracticeProvider';
 import LetterInput from '../containers/LetterInput';
+import { calculateAccuracy } from '../utils/calculateAccuracy';
 
 const Container = styled.div`
   width: 100%;
@@ -119,6 +120,8 @@ const LetterPractice = () => {
     }
   };
 
+  console.log(letters.length)
+
 
   return (
     <Container>
@@ -154,8 +157,8 @@ const LetterPractice = () => {
       <div className='bottom-row'>
         <div className='score-tracker'>
           <span className="section">
-            <h3 className="correct">Correct:</h3>
-            {correct}
+            <h3 className="correct">Accuracy:</h3>
+            {calculateAccuracy(correct, incorrect, letters.length)}%
           </span>
           <span className="section">
             <h3 className="incorrect">Incorrect:</h3>
