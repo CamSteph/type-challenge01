@@ -12,6 +12,7 @@ const LetterPracticeProvider = ({children}) => {
     incorrect: 0,
     mode: 'all',
     continueTyping: true,
+    practiceStarted: false,
   });
 
   return (

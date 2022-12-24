@@ -79,7 +79,7 @@ const LetterDisplay = ({
             }
           }
           else {
-            if (i === length) {
+            if (i === length - 1) {
               return (
                 <Letter key={letter}>
                   <span style={{backgroundColor: 'tomato', color: '#fff'}}>{letter}</span>

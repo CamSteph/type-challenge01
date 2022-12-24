@@ -13,6 +13,7 @@ const Input = styled.input`
   font-size: 28px;
   font-weight: 500;
   font-family: 'PT Mono', 'Chivo Mono', monospace;
+  background: ${props => props.continueTyping === true ? '#fff' : '#fc7d6740'};
 `;
 
 const LetterInput = ({
@@ -21,6 +22,7 @@ const LetterInput = ({
   setLetterPracticeState,
   continueTyping,
   mode,
+  practiceStarted,
 }) => {
 
   const letterInputRef = useRef();
@@ -30,27 +32,28 @@ const LetterInput = ({
   }, [mode, letters]);
 
   const enterLetter = (e) => {
+
     const currentLetter = e.target.value;
     let keyCode = (window.event) ? e.keyCode : e.which;
 
-    if(currentLetter.trim() || keyCode === 8) {
+    if((currentLetter.trim() || keyCode === 8) && keyCode !== 20) {
       setLetterPracticeState(prev => {
         const updated = {...prev};
         
         let generatedLetters = letters;
-        let currentLetters = updated.letterEntries;
+
+        if(generatedLetters.join('') === currentLetter) return window.location.reload();
+
   
         if (!generatedLetters.join('').startsWith(currentLetter)) {
           updated.continueTyping = currentLetter.length - 1;
-          updated.incorrect = Number(updated.incorrect) ? Number(updated.incorrect) + 1 : 0;
           if(keyCode !== 8) {
-            e.target.value = currentLetters.join('');
-            return updated;
+            updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
           }
         }
         else {
           updated.continueTyping = true;
-          updated.correct = Number(updated.correct) ? Number(updated.correct) + 1 : 0;
+          updated.correct = updated.correct > 0 ? Number(updated.correct) + 1 : 1;
           updated.letterEntries = currentLetter.split(',');
           return updated;
         }
@@ -64,10 +67,20 @@ const LetterInput = ({
 
   return (
     <Input
+      continueTyping={continueTyping}
       type='text'
       onKeyUp={enterLetter}
       ref={letterInputRef}
       spellCheck={false}
+      placeholder={
+        (!practiceStarted || letterEntries.length < 1) 
+        ? 
+          'Type the characters that are present.' 
+        : 
+          ''
+      }
+      autoFocus={true}
+      maxLength={continueTyping === true ? 50 : continueTyping + 1}
     />
   );
 };

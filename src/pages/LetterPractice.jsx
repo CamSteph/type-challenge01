@@ -13,7 +13,7 @@ const Container = styled.div`
   padding: 7em 5em;
   display: grid;
   grid-template-rows: 3em 3em auto 3em;
-  background:  #ffffff;
+  background:  #fff;
 
   .page-title {
     text-align: left;
@@ -37,7 +37,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  min-height: 70vh;
+  min-height: 74vh;
   background: rgba(225, 225, 225, .55);
   border-radius: 10px;
   padding: 40px;
@@ -61,6 +61,18 @@ const Wrapper = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        .correct {
+          margin-bottom: .35em;
+        }
+
+        .correct, .incorrect {
+          font-weight: 200;
+        }
+
+        &:nth-child(odd), &:last-child {
+          font-weight: 900;
+        }
       }
     }
 
@@ -81,14 +93,15 @@ const LetterPractice = () => {
     correct, 
     incorrect, 
     mode, 
-    continueTyping
+    continueTyping,
+    practiceStarted,
   } = useContext(LetterPracticeContext);
   
   const setLetterPracticeState = useContext(LetterPracticeDispatchContext);
 
-  const incrementCorrectAmt = () => {
+  const startPractice = () => {
     setLetterPracticeState(prev => {
-      return {...prev, incorrect, correct: correct + 1}
+      return {...prev, practiceStarted: true}
    });
   };
 
@@ -109,7 +122,7 @@ const LetterPractice = () => {
 
   return (
     <Container>
-      <h1 className='page-title' onClick={incrementCorrectAmt}>Letter Practice</h1>
+      <h1 className='page-title' onClick={startPractice}>Letter Practice</h1>
       <select 
         name="mode-switch" 
         id="mode-switch" 
@@ -136,6 +149,7 @@ const LetterPractice = () => {
           setLetterPracticeState={setLetterPracticeState}
           continueTyping={continueTyping}
           mode={mode}
+          practiceStarted={practiceStarted}
         />
       <div className='bottom-row'>
         <div className='score-tracker'>
