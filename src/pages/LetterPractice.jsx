@@ -62,18 +62,17 @@ const Wrapper = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
+        font-weight: 900;
 
-        .correct {
-          margin-bottom: .35em;
+        .accuracy-title {
+          margin-right: .35em;
+          /* color: #1d8dd8; */
         }
 
-        .correct, .incorrect {
-          font-weight: 200;
+        .accuracy-val {
+          color: #1d8dd8;
         }
 
-        &:nth-child(odd), &:last-child {
-          font-weight: 900;
-        }
       }
     }
 
@@ -86,7 +85,7 @@ const LetterPractice = () => {
 
   const quitPractice = () => {
     navigate(-1);
-  }
+  };
 
   const {
     letters, 
@@ -102,7 +101,7 @@ const LetterPractice = () => {
 
   const startPractice = () => {
     setLetterPracticeState(prev => {
-      return {...prev, practiceStarted: true}
+      return {...prev, practiceStarted: true};
    });
   };
 
@@ -120,12 +119,10 @@ const LetterPractice = () => {
     }
   };
 
-  console.log(letters.length)
-
 
   return (
     <Container>
-      <h1 className='page-title' onClick={startPractice}>Letter Practice</h1>
+      <h1 className='page-title' onClick={startPractice}>Typing Practice</h1>
       <select 
         name="mode-switch" 
         id="mode-switch" 
@@ -133,7 +130,7 @@ const LetterPractice = () => {
         onChange={setMode} 
         defaultValue={mode}
       >
-        <option value='all'>Both hands</option>
+        <option value='both-hands'>Both hands</option>
         <option value='left-hand'>Left hand</option>
         <option value='right-hand'>Right hand</option>
       </select>
@@ -157,12 +154,8 @@ const LetterPractice = () => {
       <div className='bottom-row'>
         <div className='score-tracker'>
           <span className="section">
-            <h3 className="correct">Accuracy:</h3>
-            {calculateAccuracy(correct, incorrect, letters.length)}%
-          </span>
-          <span className="section">
-            <h3 className="incorrect">Incorrect:</h3>
-            {incorrect}
+            <span className="accuracy-title">Accuracy:</span>
+            <p className='accuracy-val'>{calculateAccuracy(correct, incorrect, letters.length)}%</p>
           </span>
         </div>
         <Button 

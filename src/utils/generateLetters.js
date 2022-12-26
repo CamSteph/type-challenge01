@@ -84,7 +84,7 @@ export const generateLetters = (mode = 'all') => {
         '6', '7', '8', '9', '0'
       ];
       break;
-    case 'all':
+    case 'both-hands':
       letters = [
         'q', 'w', 'e', 'r', 't',
         'y', 'u', 'i', 'o', 'p',
