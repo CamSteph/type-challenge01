@@ -10,7 +10,7 @@ import { calculateAccuracy } from '../utils/calculateAccuracy';
 
 const Container = styled.div`
   width: 100%;
-  min-height: 100vh;
+  min-height: 108vh;
   padding: 7em 5em;
   display: grid;
   grid-template-rows: 3em 3em auto 3em;
@@ -84,7 +84,7 @@ const LetterPractice = () => {
   const navigate = useNavigate();
 
   const quitPractice = () => {
-    navigate(-1);
+    navigate(-2);
   };
 
   const {
@@ -99,41 +99,13 @@ const LetterPractice = () => {
   
   const setLetterPracticeState = useContext(LetterPracticeDispatchContext);
 
-  const startPractice = () => {
-    setLetterPracticeState(prev => {
-      return {...prev, practiceStarted: true};
-   });
-  };
-
-  const setMode = (e) => {
-    const value = e.target.value;
-    if (value) {
-      setLetterPracticeState(prev => {
-        return {
-          ...prev,
-          letterEntries: [],
-          mode: value,
-          continueTyping: true,
-        };
-      });
-    }
-  };
-
+  if(!mode.handMode && !mode.characters) {
+    navigate('/practice/setup');
+  }
 
   return (
     <Container>
-      <h1 className='page-title' onClick={startPractice}>Typing Practice</h1>
-      <select 
-        name="mode-switch" 
-        id="mode-switch" 
-        className="mode-switch" 
-        onChange={setMode} 
-        defaultValue={mode}
-      >
-        <option value='both-hands'>Both hands</option>
-        <option value='left-hand'>Left hand</option>
-        <option value='right-hand'>Right hand</option>
-      </select>
+      <h1 className='page-title'>Typing Practice</h1>
       <Wrapper>
         <LetterDisplay 
           mode={mode} 

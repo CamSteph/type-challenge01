@@ -10,7 +10,10 @@ const LetterPracticeProvider = ({children}) => {
     letterEntries: [],
     correct: 0, 
     incorrect: 0,
-    mode: 'both-hands',
+    mode: {
+      handMode: undefined,
+      characters: undefined,
+    },
     continueTyping: true,
     practiceStarted: false,
   });

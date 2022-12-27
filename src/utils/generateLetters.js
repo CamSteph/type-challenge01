@@ -16,6 +16,21 @@ export const addSpacesToLetters = (letters) => {
 
   return letters;
 };
+
+/**
+ * Accepts an array of letters and 
+ * randomly reduces the length to a random length.
+ * Minimum length is 3
+ * @param {array} letters
+ * @returns Array of random length
+ */
+const setLetterAmt = (letters = []) => {
+  const randomLength = Math.floor(Math.random() * ((letters.length - 1) - 3) + 3);
+  letters.length = randomLength;
+  // console.log(crypto.randomUUID());
+  return letters;
+}
+
 /**
  * Accepts an array of random letters and 
  * randomly captializes up to half of the letters
@@ -32,7 +47,7 @@ export const capitalizeArrayOfLetters = (shuffledLetters) => {
     currentIndex--;
   }
 
-  return addSpacesToLetters(shuffledLetters);
+  return setLetterAmt(shuffledLetters);
 };
 
 /**
@@ -65,10 +80,11 @@ export const shuffleArrayOfLetters = (arrayOfLetters) => {
  * @param {string} `mode` The type of letters to return, ex: 'left-hand'
  * @returns Array of characters represented by the mode
  */
-export const generateLetters = (mode = 'all') => {
+export const generateLetters = (mode = {}) => {
   let letters;
-  switch(mode) {
-    case 'left-hand':
+  const praticeMode = `${mode.handMode}-${mode.characters}`
+  switch(praticeMode) {
+    case 'left-hand-all':
       letters = [
         'q', 'w', 'e', 'r', 't',
         'a', 's', 'd', 'f', 'g',
@@ -76,7 +92,19 @@ export const generateLetters = (mode = 'all') => {
         '1', '2', '3', '4', '5',
       ];
       break;
-    case 'right-hand':
+    case 'left-hand-only-letters':
+      letters = [
+        'q', 'w', 'e', 'r', 't',
+        'a', 's', 'd', 'f', 'g',
+        'z', 'x', 'c', 'v', 'b',
+      ];
+      break;
+    case 'left-hand-only-numbers':
+      letters = [
+        '1', '2', '3', '4', '5',
+      ];
+      break;
+    case 'right-hand-all':
       letters = [
         'y', 'u', 'i', 'o', 'p',
         'h', 'j', 'k', 'l', ';',
@@ -84,7 +112,7 @@ export const generateLetters = (mode = 'all') => {
         '6', '7', '8', '9', '0'
       ];
       break;
-    case 'both-hands':
+    case 'both-hands-all':
       letters = [
         'q', 'w', 'e', 'r', 't',
         'y', 'u', 'i', 'o', 'p',
