@@ -62,7 +62,7 @@ const PracticeSetup =  () => {
   const navigate = useNavigate();
 
   const goToPratice = () => {
-    console.log(mode);
+    // console.log(mode);
     // if (mode.handMode && mode.characters) {
       navigate('/practice/letters');
     // }

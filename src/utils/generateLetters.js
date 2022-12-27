@@ -112,6 +112,18 @@ export const generateLetters = (mode = {}) => {
         '6', '7', '8', '9', '0'
       ];
       break;
+    case 'right-hand-only-letters':
+      letters = [
+        'y', 'u', 'i', 'o', 'p',
+        'h', 'j', 'k', 'l', ';',
+        'n', 'm',
+      ];
+      break;
+    case 'right-hand-only-numbers':
+      letters = [
+        '6', '7', '8', '9', '0',
+      ];
+      break;
     case 'both-hands-all':
       letters = [
         'q', 'w', 'e', 'r', 't',
@@ -122,6 +134,22 @@ export const generateLetters = (mode = {}) => {
         'n', 'm',
         '1', '2', '3', '4', '5',
         '6', '7', '8', '9', '0'
+      ];
+      break;
+    case 'both-hands-only-letters':
+      letters = [
+        'q', 'w', 'e', 'r', 't',
+        'y', 'u', 'i', 'o', 'p',
+        'a', 's', 'd', 'f', 'g',
+        'h', 'j', 'k', 'l', ';',
+        'z', 'x', 'c', 'v', 'b',
+        'n', 'm',
+      ];
+      break;
+    case 'both-hands-only-numbers':
+      letters = [
+        '1', '2', '3', '4', '5',
+        '6', '7', '8', '9', '0',
       ];
       break;
     default:
