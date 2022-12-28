@@ -115,7 +115,7 @@ export const generateLetters = (mode = {}) => {
     case 'right-hand-only-letters':
       letters = [
         'y', 'u', 'i', 'o', 'p',
-        'h', 'j', 'k', 'l', ';',
+        'h', 'j', 'k', 'l',
         'n', 'm',
       ];
       break;
@@ -141,7 +141,7 @@ export const generateLetters = (mode = {}) => {
         'q', 'w', 'e', 'r', 't',
         'y', 'u', 'i', 'o', 'p',
         'a', 's', 'd', 'f', 'g',
-        'h', 'j', 'k', 'l', ';',
+        'h', 'j', 'k', 'l',
         'z', 'x', 'c', 'v', 'b',
         'n', 'm',
       ];
