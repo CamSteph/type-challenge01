@@ -14,7 +14,9 @@ const Input = styled.input`
   font-size: 28px;
   font-weight: 500;
   font-family: 'PT Mono', 'Chivo Mono', monospace;
-  background: ${props => props.continueTyping === true ? '#fff' : '#fc7d6740'};
+  /* background: ${props => props.continueTyping === true ? '#fff' : '#fc7d6740'}; */
+  border: 1.5px solid ${props => props.continueTyping === true ? '#fff' : '#d82a0c'};
+  user-select: none;
 `;
 
 const LetterInput = ({
@@ -37,6 +39,7 @@ const LetterInput = ({
     const currentLetter = e.target.value;
     let keyCode = (window.event) ? e.keyCode : e.which;
 
+    // && (keyCode < 37 && keyCode > 40)
     if((currentLetter.trim() || keyCode === 8) && keyCode !== 20) {
       setLetterPracticeState(prev => {
         const updated = {...prev};
@@ -57,7 +60,6 @@ const LetterInput = ({
         }
 
         if (!generatedLetters.join('').startsWith(currentLetter)) {
-          // if(!continueTyping) return updated;
           updated.continueTyping = currentLetter.length - 1;
           if(keyCode !== 8) {
             updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
@@ -82,6 +84,7 @@ const LetterInput = ({
       continueTyping={continueTyping}
       type='text'
       onKeyUp={enterLetter}
+      onMouseDown={(e) => e.preventDefault()}
       ref={letterInputRef}
       spellCheck={false}
       placeholder={
@@ -93,7 +96,6 @@ const LetterInput = ({
       }
       autoFocus={true}
       maxLength={continueTyping === true ? (letterEntries[0] ? letterEntries[0].length + 1 : 1) : continueTyping + 1}
-      // maxLength={continueTyping === true ? letters.length: continueTyping + 1}
     />
   );
 };

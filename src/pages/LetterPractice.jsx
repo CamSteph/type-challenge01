@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, /*  useEffect */ } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/Button';
@@ -39,7 +39,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   min-height: 74vh;
-  background: rgba(225, 225, 225, .55);
+  background: #0a4468d3;
   border-radius: 10px;
   padding: 40px;
   grid-column: 1 / -1;
@@ -71,6 +71,7 @@ const Wrapper = styled.div`
 
         .accuracy-val {
           color: #1d8dd8;
+          color: ${props => props.accuracy >= 0 ? 'green' : 'red'};
         }
 
       }
@@ -99,9 +100,14 @@ const LetterPractice = () => {
   
   const setLetterPracticeState = useContext(LetterPracticeDispatchContext);
 
-  if(!mode.handMode && !mode.characters) {
-    navigate('/practice/setup');
-  }
+  useEffect(() => {
+    if(!mode.handMode && !mode.characters) {
+      navigate('/practice/setup');
+    }
+  });
+
+  const accuracyVal = calculateAccuracy(correct, incorrect, letters.length);
+  
 
   return (
     <Container>
@@ -127,7 +133,20 @@ const LetterPractice = () => {
         <div className='score-tracker'>
           <span className="section">
             <span className="accuracy-title">Accuracy:</span>
-            <p className='accuracy-val'>{calculateAccuracy(correct, incorrect, letters.length)}%</p>
+            <p className='accuracy-val' style={{color: accuracyVal >= 80 ? 
+              '#58c258d6' 
+            : 
+              accuracyVal >= 60 ? 
+              'orange' 
+            : 
+              (accuracyVal === 0 && continueTyping) ? 
+              '#fff' 
+            : 
+              'tomato'
+            }}
+          >
+              {accuracyVal}%
+            </p>
           </span>
         </div>
         <Button 

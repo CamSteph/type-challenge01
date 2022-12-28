@@ -66,14 +66,16 @@ const LetterDisplay = ({
             if(length > 0 && i < length) {
               return (
                 <Letter key={letter}>
-                  <span style={{backgroundColor: '#5d9e5dae', color: '#fff'}}>{letter}</span>
+                  {/* <span style={{backgroundColor: '#58c258ad', color: '#fff'}}>{letter}</span> */}
+                  <span style={{background: 'transparent', color: '#58c258d6'}}>{letter}</span>
                 </Letter>
               )
             }
             else {
               return (
                 <Letter key={letter}>
-                  <span style={{backgroundColor: '#ced2d4', color: '#111'}}>{letter}</span>
+                  {/* <span style={{backgroundColor: '#ced2d4', color: '#111'}}>{letter}</span> */}
+                  <span style={{background: 'transparent', color: '#111'}}>{letter}</span>
                 </Letter>
               )
             }
@@ -82,21 +84,24 @@ const LetterDisplay = ({
             if (i === length - 1) {
               return (
                 <Letter key={letter}>
-                  <span style={{backgroundColor: 'tomato', color: '#fff'}}>{letter}</span>
+                  {/* <span style={{backgroundColor: 'tomato', color: '#fff'}}>{letter}</span> */}
+                  <span style={{background: 'transparent', color: 'tomato'}}>{letter}</span>
                 </Letter>
               )
             }
             else if (i < continueTyping) {
               return (
                 <Letter key={letter}>
-                  <span style={{backgroundColor: '#5d9e5dae', color: '#fff'}}>{letter}</span>
+                  {/* <span style={{backgroundColor: '#5d9e5dae', color: '#fff'}}>{letter}</span> */}
+                  <span style={{background: 'transparent', color: '#58c258d6'}}>{letter}</span>
                 </Letter>
               )
             }
             else {
               return (
                 <Letter key={letter}>
-                  <span style={{backgroundColor: '#ced2d4', color: '#111'}}>{letter}</span>
+                  {/* <span style={{backgroundColor: '#ced2d4', color: '#111'}}>{letter}</span> */}
+                  <span style={{background: 'transparent', color: '#111'}}>{letter}</span>
                 </Letter>
               )
             }
