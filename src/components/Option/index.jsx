@@ -32,7 +32,7 @@ const Option = ({
   const navigate = useNavigate();
 
   const goToDestination = () => {
-    navigate(`${destination}`);
+    navigate(`/practice/${destination}`);
   };
 
 

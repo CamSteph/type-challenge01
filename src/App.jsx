@@ -21,7 +21,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route exact path='/practice' element={<PracticeOptions />} />
+        <Route exact path='/options' element={<PracticeOptions />} />
         <Route exact path='/practice/letters' element={<LetterPracticeProvider children={<LetterPractice />} />} />
         <Route exact path='/practice/setup' element={<LetterPracticeProvider children={<PracticeSetup />} />} />
         <Route exact path='/practice/speed-test' element={<SpeedTest />} />

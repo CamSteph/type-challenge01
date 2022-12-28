@@ -85,7 +85,7 @@ const LetterPractice = () => {
   const navigate = useNavigate();
 
   const quitPractice = () => {
-    navigate(-2);
+    navigate('/options');
   };
 
   const {

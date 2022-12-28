@@ -67,9 +67,12 @@ const LetterInput = ({
         }
         else {
           updated.continueTyping = true;
-          updated.correct = updated.correct > 0 ? Number(updated.correct) + 1 : 1;
-          updated.letterEntries = currentLetter.split(',');
-          return updated;
+          if(keyCode !== 8) {
+            updated.correct = updated.correct > 0 ? Number(updated.correct) + 1 : 1;
+            updated.letterEntries = currentLetter.split(',');
+            return updated;
+
+          }
         }
 
         updated.letterEntries = currentLetter.split(',');

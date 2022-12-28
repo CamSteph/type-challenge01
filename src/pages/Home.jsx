@@ -26,6 +26,7 @@ const Container = styled.div`
 
 const Section = styled.div`
   width: ${props => props.isLeftSection ? '60%' : '90%'};
+  /* ${props => props.isLeftSection ? 'height: 110%' : ''}; */
   padding: 4em 0;
   text-align: ${props => props.textAlign || ''};
 `;
@@ -43,8 +44,8 @@ const Home = () => {
   
   const navigate = useNavigate();
 
-  const goToPracticeOptions = () => {
-    navigate('/practice');
+  const goToOptions = () => {
+    navigate('/options');
   };
 
   return (
@@ -56,8 +57,8 @@ const Home = () => {
           alignment='left'
         />
         <Button 
-          btnOnClick={goToPracticeOptions}
-          btnText='Practice'
+          btnOnClick={goToOptions}
+          btnText='Start'
           btnAction='primary'
           btnSize='md'
           btnInverted={false}

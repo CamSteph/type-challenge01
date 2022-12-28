@@ -10,12 +10,13 @@ import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
-  min-height: 105vh;
+  min-height: 100vh;
   padding: 5em;
   display: grid;
   /* grid-template-columns: repeat(3, 1fr); */
   grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
   grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: 10em autofit;
   grid-column-gap: 15%;
   grid-row-gap: 5%;
   place-items: center;
