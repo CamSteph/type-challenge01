@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, /*  useEffect */ } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/Button';
@@ -136,6 +136,8 @@ const LetterPractice = () => {
     navigate('/options');
   };
 
+  const [time, setTime] = useState(3);
+
   const {
     letters, 
     letterEntries, 
@@ -164,15 +166,28 @@ const LetterPractice = () => {
         <div className="bg-circle-2"></div>
         <div className="bg-circle-3"></div>
       </div>
-      <Timer timeLimit={5} letters={letters} />
       <Wrapper>
-        <LetterDisplay 
-          mode={mode} 
-          setLetterPracticeState={setLetterPracticeState} 
-          letters={letters}
-          continueTyping={continueTyping}
-          letterEntries={letterEntries}
-        />
+        {
+          time > 0 ?
+          (
+            <Timer 
+              time={time} 
+              setTime={setTime} 
+              letters={letters} 
+            />
+
+          )
+          :
+          (
+            <LetterDisplay 
+              mode={mode} 
+              setLetterPracticeState={setLetterPracticeState} 
+              letters={letters}
+              continueTyping={continueTyping}
+              letterEntries={letterEntries}
+            />
+          )
+        }
         <LetterInput 
           type='text'
           letterEntries={letterEntries}
@@ -181,6 +196,7 @@ const LetterPractice = () => {
           continueTyping={continueTyping}
           mode={mode}
           practiceStarted={practiceStarted}
+          setTime={setTime}
         />
       <div className='bottom-row'>
         <div className='score-tracker'>

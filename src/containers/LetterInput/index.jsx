@@ -26,6 +26,7 @@ const LetterInput = ({
   continueTyping,
   mode,
   practiceStarted,
+  setTime
 }) => {
 
   const letterInputRef = useRef();
@@ -52,6 +53,7 @@ const LetterInput = ({
 
         // if(generatedLetters.join('') === currentLetter) return window.location.reload();
         if(generatedLetters.join('') === currentLetter) {
+          setTime(5);
           return {
             ...prev,
             letters: generateLetters(prev.mode), 
