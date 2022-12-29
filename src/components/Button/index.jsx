@@ -46,7 +46,7 @@ const BtnContainer = styled.button`
       case 'success':
         return '#3bb14e';
       case 'warning':
-        return '#d8b61d';
+        return '#d8971d';
       case 'danger':
         return '#d8291d';
       case 'dark':
@@ -64,7 +64,7 @@ const BtnContainer = styled.button`
           case 'success':
             return 'color: #3bb14e';
           case 'warning':
-            return 'color: #d8b61d';
+            return 'color: #d8971d';
           case 'danger':
             return 'color: #d8291d';
           case 'dark':
@@ -82,7 +82,7 @@ const BtnContainer = styled.button`
         case 'success':
           return 'border: 1px solid #3bb14e';
         case 'warning':
-          return 'border: 1px solid #d8b61d';
+          return 'border: 1px solid #d8971d';
         case 'danger':
           return 'border: 1px solid #d8291d';
         case 'dark':
@@ -101,7 +101,7 @@ const BtnContainer = styled.button`
         case 'success':
           return '#288337';
         case 'warning':
-          return '#ac9015';
+          return '#b37c18';
         case 'danger':
           return '#a31d13';
         case 'dark':

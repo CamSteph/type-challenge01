@@ -34,6 +34,10 @@ const LetterInput = ({
     letterInputRef.current.value = '';
   }, [mode, letters]);
 
+  const handleFocus = () => {
+    letterInputRef.current.focus();
+  };
+
   const enterLetter = (e) => {
 
     const currentLetter = e.target.value;
@@ -87,7 +91,8 @@ const LetterInput = ({
       continueTyping={continueTyping}
       type='text'
       onKeyUp={enterLetter}
-      onMouseDown={(e) => e.preventDefault()}
+      onMouseDown={(e) => e.preventDefault()} // prevents user from selecting text in the input
+      onClick={handleFocus} // allows user to re-focus element if blurred. preventing Default on MousDown event prevents re-focus.
       ref={letterInputRef}
       spellCheck={false}
       placeholder={

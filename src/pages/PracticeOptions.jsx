@@ -42,7 +42,7 @@ const PracticeOptions = () => {
     <Container>
       <Link to='/' className='go-back-link'><FaArrowLeft className='arrow-left'/> Go back</Link>
       <Option 
-        optionTitle='Letter practice' 
+        optionTitle='Typing practice' 
         optionDescription="Here you'll be able to practice accuracy. This will improve your muscle memory!"
         destination='setup' 
         btnText='Start practice'

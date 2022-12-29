@@ -39,7 +39,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   min-height: 74vh;
-  background: #0a4468d3;
+  background: linear-gradient(160deg, #678091, #19252cd2);
   border-radius: 10px;
   padding: 40px;
   grid-column: 1 / -1;
