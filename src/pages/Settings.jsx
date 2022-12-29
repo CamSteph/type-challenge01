@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -10,9 +10,30 @@ const Container = styled.div`
 `;
 
 const Settings = () => {
+
+
+  const [instantDeathMode, setInstantDeathMode] = useState(false);
+
+  const toggleInstantDeathMode = (newMode) => {
+    if (instantDeathMode && newMode === 'on') return;
+    if (!instantDeathMode && newMode === 'off') return;
+    setInstantDeathMode(!instantDeathMode);
+    sessionStorage.setItem('death-mode', newMode);
+  };
+
   return (
     <Container>
-      Settings will go here.
+      Instant Death Mode
+      <div style={{'display': 'flex', justifyContent: 'space-between', width: '8em'}}>
+        <div>
+          <label htmlFor="death-mode-on" style={{marginRight: '.2em'}}>On</label>
+          <input type='radio' name='on' checked={instantDeathMode} onClick={() => toggleInstantDeathMode('on')} />
+        </div>
+        <div>
+          <label htmlFor="death-mode-off" style={{marginRight: '.2em'}}>Off</label>
+          <input type='radio' name='off' checked={!instantDeathMode} onClick={() => toggleInstantDeathMode('off')} />
+        </div>
+      </div>
     </Container>
   );
 };

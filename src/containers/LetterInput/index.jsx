@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { generateLetters } from '../../utils/generateLetters';
 
@@ -30,6 +31,8 @@ const LetterInput = ({
 }) => {
 
   const letterInputRef = useRef();
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     letterInputRef.current.value = '';
@@ -66,11 +69,16 @@ const LetterInput = ({
         }
 
         if (!generatedLetters.join('').startsWith(currentLetter)) {
+          const deathMode = sessionStorage.getItem('death-mode');
           updated.continueTyping = currentLetter.length - 1;
           if(keyCode !== 8) {
             if(continueTyping === true){
               updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
             }
+          }
+          if (deathMode) {
+            alert('Youve lost in death mode.');
+            navigate('/options');
           }
         }
         else {
