@@ -8,6 +8,7 @@ const Container = styled.footer`
   background: #111;
   color: rgb(225, 225, 225);
   text-align: center;
+  z-index: 8;
 `;
 
 const Footer = () => {

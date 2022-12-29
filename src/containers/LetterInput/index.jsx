@@ -66,7 +66,9 @@ const LetterInput = ({
         if (!generatedLetters.join('').startsWith(currentLetter)) {
           updated.continueTyping = currentLetter.length - 1;
           if(keyCode !== 8) {
-            updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
+            if(continueTyping === true){
+              updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
+            }
           }
         }
         else {

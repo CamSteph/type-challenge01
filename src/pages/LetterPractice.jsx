@@ -7,6 +7,7 @@ import { FaArrowCircleRight } from 'react-icons/fa';
 import { LetterPracticeContext, LetterPracticeDispatchContext } from '../containers/LetterPracticeProvider';
 import LetterInput from '../containers/LetterInput';
 import { calculateAccuracy } from '../utils/calculateAccuracy';
+import Timer from '../components/Timer';
 
 const Container = styled.div`
   width: 100%;
@@ -15,6 +16,51 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 3em 3em auto 3em;
   background:  #fff;
+  position: relative;
+
+  .circle-wrap {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: transparent;
+
+    .bg-circle-1 {
+      position: absolute;
+      top: 12%;
+      left: 50%;
+      transform: translateX(-8%);
+      width: 20em;
+      height: 20em;
+      border-radius: 100%;
+      background: #6c7c8b;
+    }
+  
+    .bg-circle-2 {
+      position: absolute;
+      top: 62%;
+      right: 10%;
+      /* transform: translateX(5%); */
+      width: 14em;
+      height: 14em;
+      border-radius: 100%;
+      background: #718088;
+      z-index: 2;
+    }
+  
+    .bg-circle-3 {
+      position: absolute;
+      top: 48%;
+      left: 10%;
+      transform: translateX(-25%);
+      width: 17em;
+      height: 17em;
+      border-radius: 100%;
+      background: #626d81;
+      z-index: 2;
+    }
+
+  }
+
 
   .page-title {
     text-align: left;
@@ -39,7 +85,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   min-height: 74vh;
-  background: linear-gradient(160deg, #678091, #19252cd2);
+  background: linear-gradient(160deg, #c3cfd8a6, #acdaf563);
   border-radius: 10px;
   padding: 40px;
   grid-column: 1 / -1;
@@ -47,6 +93,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  z-index: 3;
+  backdrop-filter: blur(20px);
+  
 
   .bottom-row {
     width: 100%;
@@ -71,7 +120,6 @@ const Wrapper = styled.div`
 
         .accuracy-val {
           color: #1d8dd8;
-          color: ${props => props.accuracy >= 0 ? 'green' : 'red'};
         }
 
       }
@@ -107,11 +155,16 @@ const LetterPractice = () => {
   });
 
   const accuracyVal = calculateAccuracy(correct, incorrect, letters.length);
-  
 
   return (
     <Container>
       <h1 className='page-title'>Typing Practice</h1>
+      <div className="circle-wrap">
+        <div className="bg-circle-1"></div>
+        <div className="bg-circle-2"></div>
+        <div className="bg-circle-3"></div>
+      </div>
+      <Timer timeLimit={5} letters={letters} />
       <Wrapper>
         <LetterDisplay 
           mode={mode} 
@@ -134,15 +187,15 @@ const LetterPractice = () => {
           <span className="section">
             <span className="accuracy-title">Accuracy:</span>
             <p className='accuracy-val' style={{color: accuracyVal >= 80 ? 
-              '#58c258d6' 
+              '#009200' 
             : 
               accuracyVal >= 60 ? 
-              'orange' 
+              '#e49c00' 
             : 
               (accuracyVal === 0 && continueTyping) ? 
-              '#fff' 
+              '#000' 
             : 
-              'tomato'
+              '#d8291d'
             }}
           >
               {accuracyVal}%

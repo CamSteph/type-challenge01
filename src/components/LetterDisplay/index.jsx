@@ -7,7 +7,7 @@ const Container = styled.div`
   min-height: 6em;
   max-height: 15em;
   padding: 20px;
-  /* border: 1px solid #999; */
+  border: 1.5px solid #ffffff;
   border-radius: 10px;
   margin: auto;
   display: grid;
@@ -67,7 +67,7 @@ const LetterDisplay = ({
               return (
                 <Letter key={letter}>
                   {/* <span style={{backgroundColor: '#58c258ad', color: '#fff'}}>{letter}</span> */}
-                  <span style={{background: 'transparent', color: '#58c258d6'}}>{letter}</span>
+                  <span style={{background: 'transparent', color: '#36be36'}}>{letter}</span>
                 </Letter>
               )
             }
@@ -85,7 +85,7 @@ const LetterDisplay = ({
               return (
                 <Letter key={letter}>
                   {/* <span style={{backgroundColor: 'tomato', color: '#fff'}}>{letter}</span> */}
-                  <span style={{background: 'transparent', color: 'tomato'}}>{letter}</span>
+                  <span style={{background: 'transparent', color: '#d8291d'}}>{letter}</span>
                 </Letter>
               )
             }
@@ -93,7 +93,7 @@ const LetterDisplay = ({
               return (
                 <Letter key={letter}>
                   {/* <span style={{backgroundColor: '#5d9e5dae', color: '#fff'}}>{letter}</span> */}
-                  <span style={{background: 'transparent', color: '#58c258d6'}}>{letter}</span>
+                  <span style={{background: 'transparent', color: '#36be36'}}>{letter}</span>
                 </Letter>
               )
             }

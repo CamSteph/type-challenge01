@@ -23,7 +23,12 @@ const Container = styled.div`
   
   .title {
     grid-column: 1 / -1;
+
+    .emphasis-text {
+      color: #18d;
+    }
   }
+
 `;
 
 const Card = styled.div`
@@ -39,12 +44,16 @@ const Card = styled.div`
 
   &:hover {
     box-shadow: 0px 0px 19px 8px rgba(47, 47, 105, 0.18);
+    color: #18d;
+
+    .card-logo {
+      color: #18d;
+    }
   }
 
   .card-logo {
     font-size: 6em;
     margin-bottom: 5px;
-    color: #18d;
   }
 
   .left-hand-logo {
@@ -92,7 +101,7 @@ const PracticeSetup =  () => {
       ?
         (
           <>
-            <h1 className='title'>Which hand do you need practice with?</h1>
+            <h1 className='title'>Which <strong className='emphasis-text'>hand</strong> do you need practice with?</h1>
             <Card onClick={() => setHandMode('left-hand')}>
               <FaHandPaper className='card-logo left-hand-logo'/>
               <p>Left hand</p>
@@ -111,7 +120,7 @@ const PracticeSetup =  () => {
         !mode.characters && 
           (
             <>
-              <h1 className='title'>Which characters do you need practice with?</h1>
+              <h1 className='title'>Which <strong className='emphasis-text'>characters</strong> do you need practice with?</h1>
               <Card onClick={() => setCharacters('all')}>
                 <RxLetterCaseCapitalize className='card-logo'/>
                 <p>All characters</p>
