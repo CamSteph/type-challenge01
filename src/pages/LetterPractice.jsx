@@ -32,18 +32,17 @@ const Container = styled.div`
       width: 20em;
       height: 20em;
       border-radius: 100%;
-      background: #6c7c8b;
+      background:#1188dd;
     }
   
     .bg-circle-2 {
       position: absolute;
       top: 62%;
-      right: 10%;
-      /* transform: translateX(5%); */
+      right: 5%;
       width: 14em;
       height: 14em;
       border-radius: 100%;
-      background: #718088;
+      background: #1188dd;
       z-index: 2;
     }
   
@@ -55,11 +54,23 @@ const Container = styled.div`
       width: 17em;
       height: 17em;
       border-radius: 100%;
-      background: #626d81;
+      background: #1188dd;
       z-index: 2;
     }
 
   }
+
+  .top-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+
+      strong {
+        font-size: 1.5em;
+      }
+    }
 
 
   .page-title {
@@ -146,6 +157,7 @@ const LetterPractice = () => {
     mode, 
     continueTyping,
     practiceStarted,
+    practiceResults,
   } = useContext(LetterPracticeContext);
   
   const setLetterPracticeState = useContext(LetterPracticeDispatchContext);
@@ -158,9 +170,14 @@ const LetterPractice = () => {
 
   const accuracyVal = calculateAccuracy(correct, incorrect, letters.length);
 
+  console.log(practiceResults)
+
   return (
     <Container>
-      <h1 className='page-title'>Typing Practice</h1>
+      <div className='top-row'>
+        <h1 className='page-title'>Typing Practice</h1>
+        <strong>{practiceResults.length} / 10</strong>
+      </div>
       <div className="circle-wrap">
         <div className="bg-circle-1"></div>
         <div className="bg-circle-2"></div>
@@ -197,6 +214,7 @@ const LetterPractice = () => {
           mode={mode}
           practiceStarted={practiceStarted}
           setTime={setTime}
+          time={time}
         />
       <div className='bottom-row'>
         <div className='score-tracker'>

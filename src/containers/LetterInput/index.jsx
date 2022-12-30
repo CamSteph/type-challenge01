@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { calculateAccuracy } from '../../utils/calculateAccuracy';
 import { generateLetters } from '../../utils/generateLetters';
 
 const Input = styled.input`
@@ -27,11 +28,11 @@ const LetterInput = ({
   continueTyping,
   mode,
   practiceStarted,
-  setTime
+  setTime,
+  time
 }) => {
 
   const letterInputRef = useRef();
-
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -41,22 +42,24 @@ const LetterInput = ({
   const handleFocus = () => {
     letterInputRef.current.focus();
   };
+  
+  if (time <= 0) {
+    letterInputRef.current.focus();
+  }
 
   const enterLetter = (e) => {
 
     const currentLetter = e.target.value;
     let keyCode = (window.event) ? e.keyCode : e.which;
 
-    // && (keyCode < 37 && keyCode > 40)
     if((currentLetter.trim() || keyCode === 8) && keyCode !== 20) {
       setLetterPracticeState(prev => {
         const updated = {...prev};
         
         let generatedLetters = letters;
 
-        // if(generatedLetters.join('') === currentLetter) return window.location.reload();
         if(generatedLetters.join('') === currentLetter) {
-          setTime(5);
+          // setTime(3);
           return {
             ...prev,
             letters: generateLetters(prev.mode), 
@@ -65,18 +68,23 @@ const LetterInput = ({
             incorrect: 0,
             continueTyping: true,
             practiceStarted: false,
+            practiceResults: [...updated.practiceResults, calculateAccuracy(updated.correct, updated.incorrect, updated.letters.length)],
           }
         }
 
         if (!generatedLetters.join('').startsWith(currentLetter)) {
-          const deathMode = sessionStorage.getItem('death-mode');
+
           updated.continueTyping = currentLetter.length - 1;
+          
           if(keyCode !== 8) {
             if(continueTyping === true){
               updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
             }
           }
-          if (deathMode) {
+
+          const deathMode = sessionStorage.getItem('death-mode');
+
+          if (deathMode === 'on') {
             alert('Youve lost in death mode.');
             navigate('/options');
           }
@@ -100,6 +108,7 @@ const LetterInput = ({
 
   return (
     <Input
+      disabled={time > 0}
       continueTyping={continueTyping}
       type='text'
       onKeyUp={enterLetter}

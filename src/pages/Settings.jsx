@@ -11,8 +11,12 @@ const Container = styled.div`
 
 const Settings = () => {
 
+  const setMode = () => {
+    const mode = sessionStorage.getItem('death-mode');
+    return mode ? mode : false;
+  }
 
-  const [instantDeathMode, setInstantDeathMode] = useState(false);
+  const [instantDeathMode, setInstantDeathMode] = useState(setMode());
 
   const toggleInstantDeathMode = (newMode) => {
     if (instantDeathMode && newMode === 'on') return;

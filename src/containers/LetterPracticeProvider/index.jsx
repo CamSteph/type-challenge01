@@ -16,6 +16,7 @@ const LetterPracticeProvider = ({children}) => {
     },
     continueTyping: true,
     practiceStarted: false,
+    practiceResults: [],
   });
 
   return (
