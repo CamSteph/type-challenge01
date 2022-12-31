@@ -7,7 +7,8 @@ const Container = styled.div`
   padding: .75em;
   font-size: 4em;
   font-weight: 500;
-  border: 1px solid #000;
+  border: 1px solid #ccc;
+  color: #ccc;
   border-radius: 100%;
 `;
 

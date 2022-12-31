@@ -46,7 +46,7 @@ const PracticeOptions = () => {
         optionDescription="Here you'll be able to practice accuracy. This will improve your muscle memory!"
         destination='setup' 
         btnText='Start practice'
-        btnAction='warning'
+        btnAction='primary'
       />
       <Option 
         optionTitle='Speed test' 

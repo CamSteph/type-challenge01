@@ -4,14 +4,15 @@ import { generateLetters } from '../../utils/generateLetters';
 
 const Container = styled.div`
   width: 100%;
-  min-height: 6em;
-  max-height: 15em;
-  padding: 20px;
-  border: 1.5px solid #ffffff;
+  /* min-height: 6em;
+  max-height: 15em; */
+  height: auto;
+  padding: 10px;
+  border: 1.5px solid #ccc;
   border-radius: 10px;
   margin: auto;
   display: grid;
-  place-items: center;
+  /* place-items: center; */
   line-height: 150%;
   `;
 
@@ -75,7 +76,7 @@ const LetterDisplay = ({
               return (
                 <Letter key={letter}>
                   {/* <span style={{backgroundColor: '#ced2d4', color: '#111'}}>{letter}</span> */}
-                  <span style={{background: 'transparent', color: '#111'}}>{letter}</span>
+                  <span style={{background: 'transparent', color: '#fff'}}>{letter}</span>
                 </Letter>
               )
             }
@@ -101,7 +102,7 @@ const LetterDisplay = ({
               return (
                 <Letter key={letter}>
                   {/* <span style={{backgroundColor: '#ced2d4', color: '#111'}}>{letter}</span> */}
-                  <span style={{background: 'transparent', color: '#111'}}>{letter}</span>
+                  <span style={{background: 'transparent', color: '#fff'}}>{letter}</span>
                 </Letter>
               )
             }

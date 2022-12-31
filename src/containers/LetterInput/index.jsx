@@ -10,10 +10,10 @@ const Input = styled.input`
   width: 100%;
   display: block;
   margin: auto;
-  padding: 15px;
+  padding: 12px;
   border-radius: 10px;
   color: #222;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 500;
   font-family: 'PT Mono', 'Chivo Mono', monospace;
   /* background: ${props => props.continueTyping === true ? '#fff' : '#fc7d6740'}; */
@@ -59,7 +59,6 @@ const LetterInput = ({
         let generatedLetters = letters;
 
         if(generatedLetters.join('') === currentLetter) {
-          // setTime(3);
           return {
             ...prev,
             letters: generateLetters(prev.mode), 
