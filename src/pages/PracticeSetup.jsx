@@ -3,29 +3,53 @@ import styled from 'styled-components';
 import { FaHandSparkles, FaHandPaper } from 'react-icons/fa';
 import { RxLetterCaseCapitalize } from 'react-icons/rx'
 import { MdOutlineAttachMoney } from 'react-icons/md';
-import { AiOutlineNumber } from 'react-icons/ai';
+import { FaArrowLeft } from 'react-icons/fa';
 import { TbSortAscendingLetters, TbNumbers } from 'react-icons/tb';
 import { LetterPracticeContext, LetterPracticeDispatchContext } from '../containers/LetterPracticeProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 40em;
   padding: 5em;
   display: grid;
-  /* grid-template-columns: repeat(3, 1fr); */
   grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
   grid-template-rows: repeat(2, 1fr);
   grid-template-rows: 10em autofit;
   grid-column-gap: 15%;
   grid-row-gap: 5%;
   place-items: center;
+  position: relative;
   
   .title {
     grid-column: 1 / -1;
 
     .emphasis-text {
       color: #18d;
+    }
+  }
+
+  .go-back-link {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 5.42em;
+    left: 5%;
+    color: #1d8dd8;
+    cursor: pointer;
+
+    &:visited {
+      color: #1674b3;
+    }
+
+    &:hover {
+      color: #1674b3;
+      text-decoration: underline;
+    }
+
+    .arrow-left {
+      margin-right: 3px;
     }
   }
 
@@ -95,8 +119,15 @@ const PracticeSetup =  () => {
     goToPratice();
   };
 
+  const goBackOnePage = () => {
+    navigate(-1);
+  }
+
   return (
     <Container>
+      <span className='go-back-link' onClick={goBackOnePage}>
+        <FaArrowLeft className='arrow-left'/> Go back
+      </span>
       {!mode.handMode 
       ?
         (

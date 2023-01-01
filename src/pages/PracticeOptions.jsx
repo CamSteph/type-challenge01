@@ -11,7 +11,8 @@ const Container = styled.div`
   grid-template-columns: 100vw;
   grid-template-rows: repeat(auto-fit, minmax(10em, 1fr));
   justify-items: center;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 40em;
   position: relative;
   
   .go-back-link {
@@ -19,6 +20,7 @@ const Container = styled.div`
     align-items: center;
     position: absolute;
     top: 15%;
+    top: 5.42em;
     left: 5%;
     color: #1d8dd8;
 

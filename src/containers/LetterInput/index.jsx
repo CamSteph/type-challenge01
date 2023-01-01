@@ -70,8 +70,6 @@ const LetterInput = ({
           }
         }
 
-        console.log(generatedLetters.join('').startsWith(currentLetter))
-
         if (!generatedLetters.join('').startsWith(currentLetter)) {
 
           updated.continueTyping = currentLetter.length - 1;
