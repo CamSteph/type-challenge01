@@ -89,7 +89,8 @@ export const generateLetters = (mode = {}) => {
         'q', 'w', 'e', 'r', 't',
         'a', 's', 'd', 'f', 'g',
         'z', 'x', 'c', 'v', 'b',
-        '1', '2', '3', '4', '5',
+        '1', '2', '3', '4', '5', '6',
+        '!', '@', '#', '$', '%', '^', '`', '~',
       ];
       break;
     case 'left-hand-only-letters':
@@ -101,7 +102,12 @@ export const generateLetters = (mode = {}) => {
       break;
     case 'left-hand-only-numbers':
       letters = [
-        '1', '2', '3', '4', '5',
+        '1', '2', '3', '4', '5', '6',
+      ];
+      break;
+    case 'left-hand-only-special-chars':
+      letters = [
+        '!', '@', '#', '$', '%', '^', '`', '~',
       ];
       break;
     case 'right-hand-all':
@@ -109,7 +115,10 @@ export const generateLetters = (mode = {}) => {
         'y', 'u', 'i', 'o', 'p',
         'h', 'j', 'k', 'l', ';',
         'n', 'm',
-        '6', '7', '8', '9', '0'
+        '7', '8', '9', '0',
+        '&', '*', '(', ')', '-',  '_', '=', '+',
+        ',', '<', '.', '>', '/', '?', '\'', '"', 
+        '[', ']', '{', '}', '\\', '|',
       ];
       break;
     case 'right-hand-only-letters':
@@ -121,7 +130,14 @@ export const generateLetters = (mode = {}) => {
       break;
     case 'right-hand-only-numbers':
       letters = [
-        '6', '7', '8', '9', '0',
+        '7', '8', '9', '0',
+      ];
+      break;
+    case 'right-hand-only-special-chars':
+      letters = [
+        '&', '*', '(', ')', '-',  '_', '=', '+',
+        ',', '<', '.', '>', '/', '?', '\'', '"', 
+        '[', ']', '{', '}', '\\', '|', 
       ];
       break;
     case 'both-hands-all':
@@ -133,7 +149,11 @@ export const generateLetters = (mode = {}) => {
         'z', 'x', 'c', 'v', 'b',
         'n', 'm',
         '1', '2', '3', '4', '5',
-        '6', '7', '8', '9', '0'
+        '7', '8', '9', '0',
+        '!', '@', '#', '$', '%', '^', '`', '~',
+        '&', '*', '(', ')', '-',  '_', '=', '+',
+        ',', '<', '.', '>', '/', '?', '\'', '"', 
+        '[', ']', '{', '}', '\\', '|', 
       ];
       break;
     case 'both-hands-only-letters':
@@ -161,7 +181,11 @@ export const generateLetters = (mode = {}) => {
         'z', 'x', 'c', 'v', 'b',
         'n', 'm',
         '1', '2', '3', '4', '5',
-        '6', '7', '8', '9', '0'
+        '6', '7', '8', '9', '0',
+        '!', '@', '#', '$', '%', '^', '`', '~',
+        '&', '*', '(', ')', '-',  '_', '=', '+',
+        ',', '<', '.', '>', '/', '?', '\'', '"', 
+        '[', ']', '{', '}', '\\', '|', 
       ];
   }
   return shuffleArrayOfLetters(letters);

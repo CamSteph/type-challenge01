@@ -8,6 +8,7 @@ const Container = styled.p`
   color: #444;
   font-weight: 500;
   margin-top: 10px;
+  margin-bottom: 15px;
   margin-left: 3px;
 `;
 

@@ -16,7 +16,6 @@ const Input = styled.input`
   font-size: 24px;
   font-weight: 500;
   font-family: 'PT Mono', 'Chivo Mono', monospace;
-  /* background: ${props => props.continueTyping === true ? '#fff' : '#fc7d6740'}; */
   border: 1.5px solid ${props => props.continueTyping === true ? '#fff' : '#d82a0c'};
   user-select: none;
 `;
@@ -50,7 +49,7 @@ const LetterInput = ({
   const enterLetter = (e) => {
 
     const currentLetter = e.target.value;
-    let keyCode = (window.event) ? e.keyCode : e.which;
+    const keyCode = (window.event) ? e.keyCode : e.which;
 
     if((currentLetter.trim() || keyCode === 8) && keyCode !== 20) {
       setLetterPracticeState(prev => {
@@ -71,14 +70,14 @@ const LetterInput = ({
           }
         }
 
+        console.log(generatedLetters.join('').startsWith(currentLetter))
+
         if (!generatedLetters.join('').startsWith(currentLetter)) {
 
           updated.continueTyping = currentLetter.length - 1;
           
-          if(keyCode !== 8) {
-            if(continueTyping === true){
-              updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
-            }
+          if(keyCode !== 8 && continueTyping === true) {
+            updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
           }
 
           const deathMode = sessionStorage.getItem('death-mode');
@@ -87,18 +86,21 @@ const LetterInput = ({
             alert('Youve lost in death mode.');
             navigate('/options');
           }
-        }
-        else {
+        } else {
           updated.continueTyping = true;
           if(keyCode !== 8) {
             updated.correct = updated.correct > 0 ? Number(updated.correct) + 1 : 1;
-            updated.letterEntries = currentLetter.split(',');
+
+            const newEntry = currentLetter.split('');
+            updated.letterEntries = [newEntry.join('')];
+
             return updated;
 
           }
         }
 
-        updated.letterEntries = currentLetter.split(',');
+        const newEntry = currentLetter.split('');
+        updated.letterEntries = [newEntry.join('')];
   
         return updated;
       });

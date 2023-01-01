@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import Button from '../Button';
 import { generateLetters } from '../../utils/generateLetters';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   height: 100%;
@@ -57,6 +58,8 @@ const PracticeCompleteModal = ({
   setTime,
 }) => {
 
+  const navigate = useNavigate();
+
   const constructRatingArray = () => {
     if (overallAccuracy % 20 === 0) {
       return overallAccuracy / 20;
@@ -81,6 +84,27 @@ const PracticeCompleteModal = ({
         practiceResults: [],
       }  
     })
+  };
+
+  const switchPractice = () => {
+    setLetterPracticeState(prev => {
+      return {
+        ...prev,
+        letters: [], 
+        letterEntries: [],
+        correct: 0, 
+        incorrect: 0,
+        mode: {
+          handMode: undefined,
+          characters: undefined,
+        },
+        continueTyping: true,
+        practiceStarted: false,
+        practiceResults: [],
+      }  
+    });
+
+    navigate('/practice/setup');
   }
 
   return (
@@ -111,6 +135,13 @@ const PracticeCompleteModal = ({
           btnSize='md'
           btnOnClick={practiceAgain}
           />
+        <Button 
+          btnText='Switch Practice'
+          btnInverted={true}
+          btnAction='warning'
+          btnSize='md'
+          btnOnClick={switchPractice}
+        />
         <Button 
           btnText='Quit Practice'
           btnInverted={true}

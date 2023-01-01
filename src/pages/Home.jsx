@@ -26,7 +26,6 @@ const Container = styled.div`
 
 const Section = styled.div`
   width: ${props => props.isLeftSection ? '60%' : '90%'};
-  /* ${props => props.isLeftSection ? 'height: 110%' : ''}; */
   padding: 4em 0;
   text-align: ${props => props.textAlign || ''};
 `;
