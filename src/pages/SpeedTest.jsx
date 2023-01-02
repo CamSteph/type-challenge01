@@ -113,7 +113,12 @@ const SpeedTest = () => {
       </div>
       <Wrapper>
         <WordsDisplay content={words.content} author={words.author} />
-        <WordInput words={words} wordEntries={wordEntries} setSpeedTestState={setSpeedTestState} />
+        <WordInput 
+          words={words} 
+          wordEntries={wordEntries} 
+          setSpeedTestState={setSpeedTestState}
+          continueTyping={continueTyping} 
+        />
       </Wrapper>
     </Container>
   );

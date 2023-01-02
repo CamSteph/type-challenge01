@@ -17,6 +17,7 @@ const Input = styled.input`
   font-weight: 500;
   font-family: 'PT Mono', 'Chivo Mono', monospace;
   border: 1.5px solid ${props => props.continueTyping === true ? '#fff' : '#d82a0c'};
+  /* border: 1px solid #fff; */
   user-select: none;
 `;
 
@@ -64,29 +65,44 @@ const WordInput = ({
         const updated = {...prev};
         
         let {content: generatedWords} = words;
+        let {content: enteredWords} = wordEntries;
 
-      //   if(generatedWords.join('') === currentValue) {
-      //     return {
-      //       ...prev,
-      //       words: generateLetters(prev.mode), 
-      //       wordEntries: [],
-      //       correct: 0, 
-      //       incorrect: 0,
-      //       continueTyping: true,
-      //       practiceStarted: false,
-      //       practiceResults: [...updated.practiceResults, calculateAccuracy(updated.correct, updated.incorrect, updated.words.length)],
-      //     }
-      //   }
+        if(generatedWords.join(' ') === enteredWords.join(' ')) {
+          return {
+            ...prev,
+            words: {
+              // content: [],
+              content: [ // for testing without running up the limit on api queries
+              "We're", "in", "a", "time", "now", 
+              "where", "technology", "is", "such", 
+              "television", "and", "film", "these", "days."
+              ],
+              author: 'Testing by Cam222',
+            }, 
+            wordEntries: {
+              content: [],
+              index: 0,
+            },
+            correct: 0, 
+            incorrect: 0,
+            mode: {
+              subject: undefined,
+            },
+            continueTyping: true,
+            testStarted: false,
+            testResults: [...prev, 'test complete'],
+          }
+        }
 
       console.log('wordEntries: ', wordEntries)
         if (!generatedWords[wordEntries.index].startsWith(currentValue)) {
           console.log('string DOES NOT match');
 
-          // updated.continueTyping = currentValue.length - 1;
+          updated.continueTyping = currentValue.length - 1;
           
-          // if(keyCode !== 8 && continueTyping === true) {
-          //   updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
-          // }
+          if(keyCode !== 8 && continueTyping === true) {
+            updated.incorrect = updated.incorrect > 0 ? Number(updated.incorrect) + 1 : 1;
+          }
 
           // const deathMode = sessionStorage.getItem('death-mode');
 
@@ -95,22 +111,19 @@ const WordInput = ({
           //   navigate('/options');
           // }
         } else {
-            // console.log('starts with true');
-            console.log('equals true', generatedWords[wordEntries.index] === currentValue)
-            // console.log(currentValue);
-            console.log('index: ', wordEntries.index);
-            console.log('word: ', generatedWords[wordEntries.index])
+            updated.continueTyping = true;
             if (generatedWords[wordEntries.index] === currentValue) {
-              // console.log('equals true', generatedWords[wordEntries.index] === currentValue)
+              updated.wordEntries.content.push(currentValue);
               updated.testResults.push('test complete');
-              // updated.wordEntries.index = 0;
               updated.wordEntries.index = Number(updated.wordEntries.index || 0) + 1;
-              // updated.wordEntries.index = 2;
-              // return;
             }
-            // updated.correct = (updated.correct || 0) + 1;
-          }
-          // updated.continueTyping = true;
+            // else if (generatedWords[wordEntries.index]) {
+            //   updated.wordEntries.content.pop();
+              // updated.wordEntries.content.push(currentValue);
+            // } else {
+            //   updated.wordEntries.content.push(currentValue);
+            // }
+          } 
           // if(keyCode !== 8) {
             // updated.correct = updated.correct > 0 ? Number(updated.correct) + 1 : 1;
 
@@ -147,8 +160,7 @@ const WordInput = ({
           ''
       }
       autoFocus={true}
-      maxLength={250}
-      // maxLength={continueTyping === true ? (wordEntries[0] ? wordEntries[0].length + 1 : 1) : (continueTyping || 0) + 1}
+      maxLength={continueTyping === true ? (words?.content[0] ? words?.content[wordEntries?.index].length + 1 : 1) : (continueTyping || 0) + 1}
     />
   );
 };
