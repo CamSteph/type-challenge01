@@ -14,7 +14,7 @@ const Container = styled.div`
   display: grid;
   /* place-items: center; */
   line-height: 150%;
-  `;
+`;
 
 const Letter = styled.p`
   line-height: 140%;

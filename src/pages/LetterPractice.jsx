@@ -38,7 +38,7 @@ const Container = styled.div`
     color: #18d;
   }
 
-  .mode-switch {
+  /* .mode-switch {
     outline: none;
     height: 2em;
     width: 10em;
@@ -46,7 +46,7 @@ const Container = styled.div`
     border-radius: 5px;
     color: #1d8dd8;
     cursor: pointer;
-  }
+  } */
 `;
 
 const Wrapper = styled.div`

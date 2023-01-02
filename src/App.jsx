@@ -13,6 +13,7 @@ import LetterPractice from './pages/LetterPractice';
 import SpeedTest from './pages/SpeedTest';
 import Settings from './pages/Settings';
 import { LetterPracticeProvider } from './containers/LetterPracticeProvider';
+import { SpeedTestProvider } from './containers/SpeedTestProvider';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
         <Route exact path='/options' element={<PracticeOptions />} />
         <Route exact path='/practice/letters' element={<LetterPracticeProvider children={<LetterPractice />} />} />
         <Route exact path='/practice/setup' element={<LetterPracticeProvider children={<PracticeSetup />} />} />
-        <Route exact path='/practice/speed-test' element={<SpeedTest />} />
+        <Route exact path='/practice/speed-test' element={<SpeedTestProvider><SpeedTest /></SpeedTestProvider>} />
         <Route exact path='/settings' element={<Settings />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

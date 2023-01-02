@@ -6,12 +6,25 @@ const SpeedTestDispatchContext = createContext(undefined);
 const SpeedTestProvider = ({children}) => {
 
   const [SpeedTestState, setSpeedTestState] = useState({
-    words: [], 
-    wordEntries: [],
+    words: {
+      // content: [],
+      content: [ // for testing without running up the limit on api queries
+      "We're", "in", "a", "time", "now", 
+      "where", "technology", "is", "such", 
+      "that", "we", "can", "create", "anything,", 
+      "and", "that's", "what's", "new", "about", 
+      "television", "and", "film", "these", "days."
+      ],
+      author: 'Testing by Cam',
+    }, 
+    wordEntries: {
+      content: [],
+      index: 0,
+    },
     correct: 0, 
     incorrect: 0,
     mode: {
-      topic: undefined,
+      subject: undefined,
     },
     continueTyping: true,
     testStarted: false,
